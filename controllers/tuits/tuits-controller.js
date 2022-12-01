@@ -32,7 +32,7 @@ const findTuits = async (req, res) => {
 
 
 const updateTuit = async (req, res) => {
-    const tuitUpdateID = parseInt(req.params.tid);
+    const tuitUpdateID = req.params.tid;
     const updates = req.body;
     // const tuitIndex = tuits.findIndex((t) => t._id === tuitUpdateID)
     // tuits[tuitIndex] = {...tuits[tuitIndex], ...updates};
@@ -40,14 +40,15 @@ const updateTuit = async (req, res) => {
         .updateTuit(tuitUpdateID,
             updates);
 
-    res.sendStatus(status);
+    res.json(status);
 }
 
 const deleteTuit = async (req, res) => {
-    const tuitIdToDelete = parseInt(req.params.tid);
+    const tuitIdToDelete = req.params.tid;
     const status = await tuitsDao.deleteTuit(tuitIdToDelete);
     // tuits = tuits.filter(usr =>
     //     usr._id !== tuitId);
+    console.log(status);
     res.json(status);
 }
 
